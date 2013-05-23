@@ -145,6 +145,8 @@ inner join solusi on relasigejala.id_solusi=solusi.id_solusi
 where analisahasil.id_log ='".$_GET['id_log']."' and analisahasil.id_pengguna='".$_GET['id_pengguna']."'
 order by analisahasil.id_analisa Desc limit 1";
 
+$_SESSION["get_id_log"] = $_GET['id_log'];
+
 $qry = mysql_query($sql, $koneksi) 
      or die ("Query Hasil salam".mysql_error());
 $data= mysql_fetch_array($qry);
@@ -165,40 +167,44 @@ $sql_gejalarelasi = "select distinct gejala.* FROM gejala, relasi WHERE gejala.i
     }
 
 //gejala yang sesuai dan ada
-  $sql_gejalaada = "select distinct gejala.* FROM gejala, relasi WHERE gejala.id_gejala= relasi.id_gejala AND relasi.id_gejala in (select id_gejala from analisahasil where id_log in ((select max(id_log) from log where id_log='".$_GET['id_log']."' and id_pengguna='".$_GET['id_pengguna']."')))";
+  $sql_gejalaada = "select distinct gejala.* FROM gejala, relasi WHERE gejala.id_gejala= relasi.id_gejala AND relasi.id_gejala in (select id_gejala from analisahasil where id_log in ((select max(id_log) from log where id_log='".$_GET['id_log']."' and id_pengguna='".$_GET['id_pengguna']."'))) and gejala.id_gejala IN (select id_gejala from tmp_gejala where id_log='".$_GET['id_log']."')";
     $qry_gejalaada = mysql_query($sql_gejalaada, $koneksi);
     $g=0;
     while ($hsl_gejalaada=mysql_fetch_array($qry_gejalaada)) {
     $g++;
     }
-
 $persentase=round($g/$h*100,2);
 ?>
 
+    <script type="text/javascript" src="canvasjs.min.js"></script>
 <div class="alert">
-    <h4>DATA PENGGUNA</h4>
-    <p></p>
-    <?php
-      $pg = mysql_fetch_array(mysql_query("select * from pengguna where id_pengguna='".$_GET['id_pengguna']."'"));
-    ?>
-        <div class="alert alert-success">
-          <p>Nama : <?php echo $pg['nama']; ?></p>
-          <p>Alamat : <?php echo $pg['alamat']; ?></p>
-          <p>Usia : <?php echo $pg['usia']; ?></p>
-          <p>Kelamin : <?php echo $pg['kelamin']; ?></p>
-        </div>
-
     <h4>HAMA PENYAKIT YANG TERDETEKSI YAITU:</h4>
     <p></p>
         <div class="alert alert-error"><b><? echo $data['JnsPnykt']; ?></b></div>
-
     <h4>GEJALA-GEJALA YANG MENYERANG SESUAI ANALISA:</h4>
     <p></p>
     <div class="alert alert-info">
         <ol>
     <?php 
         //select * from analisahasil a left join gejalan b on a.id_gejala=b.id_gejala where a.id_log='".$_GET['id_log']."'
-    $sql_gejala = "select distinct gejala.* FROM gejala, relasi WHERE gejala.id_gejala= relasi.id_gejala AND relasi.id_gejala in (select id_gejala from analisahasil where id_log in ((select max(id_log) from log where id_log='".$_GET['id_log']."' and id_pengguna='".$_GET['id_pengguna']."')))";
+    $sql_gejala = "select distinct gejala.* FROM gejala, relasi WHERE gejala.id_gejala= relasi.id_gejala AND relasi.id_gejala in (select id_gejala from analisahasil where id_log in ((select max(id_log) from log where id_log='".$_GET['id_log']."' and id_pengguna='".$_GET['id_pengguna']."'))) and gejala.id_gejala IN (select id_gejala from tmp_gejala where id_log='".$_GET['id_log']."')";
+    $qry_gejala = mysql_query($sql_gejala, $koneksi);
+    $i=0;
+    while ($hsl_gejala=mysql_fetch_array($qry_gejala)) {
+    $i++;
+      echo "<li> .$hsl_gejala[gejala]</li>";
+    } 
+    ?> 
+        </ol>     
+    </div>
+
+    <h4>GEJALA-GEJALA LAIN YANG SESUAI :</h4>
+    <p></p>
+    <div class="alert alert-info">
+        <ol>
+    <?php 
+        //select * from analisahasil a left join gejalan b on a.id_gejala=b.id_gejala where a.id_log='".$_GET['id_log']."'
+    $sql_gejala = "select * from relasi a left join gejala b on a.id_gejala=b.id_gejala where a.id_penyakit='".$id_pnykt."' and b.id_gejala NOT IN (select id_gejala from tmp_gejala where id_log='".$_GET['id_log']."')";
     $qry_gejala = mysql_query($sql_gejala, $koneksi);
     $i=0;
     while ($hsl_gejala=mysql_fetch_array($qry_gejala)) {
@@ -225,8 +231,7 @@ $persentase=round($g/$h*100,2);
     }
     echo $k." Gejala";
     ?>
-
-          <script type="text/javascript">
+            <script type="text/javascript">
       window.onload = function () {
         var chart = new CanvasJS.Chart("hasil",
         {
@@ -249,7 +254,7 @@ $persentase=round($g/$h*100,2);
           $qry_solusi1 = mysql_query($sql_solusi1, $koneksi);
           while ($hsl_solusi1=mysql_fetch_array($qry_solusi1)) {
               ?>
-              <?php echo '{  y: 10/3, legendText:"'.$hsl_solusi1['gejala'].'", indexLabel: "'.$hsl_solusi1['gejala'].'" },'; ?>
+              <?php echo '{  y: 100/3, legendText:"'.$hsl_solusi1['gejala'].'", indexLabel: "'.$hsl_solusi1['gejala'].'" },'; ?>
               <?php } ?>
         
            
@@ -263,7 +268,6 @@ $persentase=round($g/$h*100,2);
   </script>
 
     <div id="hasil" style="height: 300px; width: 100%;"></div>
-
     </div>
     
     <h4>SOLUSI PENCEGAHAN DAN PENGOBATAN SESUAI GEJALA YANG DIPILIH :  </h4>
@@ -334,13 +338,14 @@ $qry_solusi4 = mysql_query($sql_solusi3, $koneksi);
     <p></p>
     <div class="alert alert-info">
         <?php
-      $penyakit = mysql_query("SELECT * FROM `relasi` a left join hamapenyakit b on a.id_penyakit=b.Id_Pnykt where id_gejala in (SELECT id_gejala FROM `tmp_gejala` where id_log='".$_GET['id_log']."' and id_gejala not in(select id_gejala from analisahasil where id_log='".$_GET['id_log']."')) group by id_penyakit");
+      $penyakit = mysql_query("SELECT * FROM `relasi` a left join hamapenyakit b on a.id_penyakit=b.Id_Pnykt where id_gejala in (SELECT id_gejala FROM `tmp_gejala` where id_log='".$_GET['id_log']."' and id_gejala in(select id_gejala from analisahasil where id_log='".$_GET['id_log']."')) group by id_penyakit");
+      
       echo "<ol>";
       while($pn=mysql_fetch_array($penyakit))
       {
 
       //tampilkan gejala
-      $sql_gejalarelasi = "select distinct gejala.* FROM gejala, relasi WHERE gejala.id_gejala= relasi.id_gejala AND relasi.id_penyakit in (select id_pnykt from hamapenyakit where id_pnykt='".$pn['Id_Pnykt']."')";
+      $sql_gejalarelasi = "select * from relasi a where a.id_gejala IN (select id_gejala from tmp_gejala where id_log='".$_GET['id_log']."') and a.id_penyakit='".$pn['Id_Pnykt']."'";
           $qry_gejalarelasi = mysql_query($sql_gejalarelasi, $koneksi);
           $h=0;
           while ($hsl_gejalarelasi=mysql_fetch_array($qry_gejalarelasi)) {
@@ -348,7 +353,7 @@ $qry_solusi4 = mysql_query($sql_solusi3, $koneksi);
           }
 
       //gejala yang sesuai dan ada
-        $sql_gejalaada = "select distinct gejala.* FROM gejala, relasi WHERE gejala.id_gejala= relasi.id_gejala AND relasi.id_gejala in (select id_gejala from analisahasil where id_log in ((select max(id_log) from log where id_log='".$_GET['id_log']."' and id_pengguna='".$_GET['id_pengguna']."')))";
+        $sql_gejalaada = "select * from relasi where id_penyakit='".$pn['Id_Pnykt']."'";
           $qry_gejalaada = mysql_query($sql_gejalaada, $koneksi);
           $g=0;
           while ($hsl_gejalaada=mysql_fetch_array($qry_gejalaada)) {
@@ -396,8 +401,9 @@ $qry_solusi4 = mysql_query($sql_solusi3, $koneksi);
       }
       echo "</ol>";
     ?>
-    </div>
-    
+
+
+
       </span></td>
       <td bgcolor="">&nbsp;</td>
     </tr>
