@@ -1,0 +1,41 @@
+<li><a class="MenuBarActive" href="#">Product</a>
+        <ul>
+          <li><a class="MenuBarItemSubmenu" href="#">Akuntansi</a>
+            //<ul>
+              //<li><a href="#">Finance</a></li>
+              //<li><a href="#">Service</a></li>
+              //<li><a href="#">Distributor</a></li>
+              //<li><a href="#">Produksi</a></li>
+              //<li><a href="#">Kontraktor</a></li>
+			  //<li><a href="#">Tambang</a></li>
+              //</ul>
+            </li>
+          <li><a href="#">Aplikasi</a>
+            //<ul>
+              //<li><a href="#">Ekspedisi</a></li>
+              //<li><a href="#">Point Of Sales</a></li>
+             // <li><a href="#">Restoran</a></li>
+             // <li><a href="#">Rumah Sakit</a></li>
+             // <li><a href="#">Hotel</a></li>
+              //<li><a href="#">Apotik</a></li>
+             // </ul>
+          </li>
+          <li><a href="#">WebSite</a>
+           //<ul>
+              //<li><a href="#">Company Profil</a></li>
+              //<li><a href="#">Bussines Online</a></li>
+              //</ul>
+          </li>
+          </ul>
+      </li>
+      <li><a href="?page=service">Service</a></li>
+    </ul>
+      <ul id="MenuBar3" class="MenuBarHorizontal">
+        <li><a href="?page=about">About Us</a></li>
+      </ul>
+      <ul id="MenuBar4" class="MenuBarHorizontal">
+        <li><a href="?helpdesk">HelpDesk</a></li>
+      </ul>
+	  <ul id="MenuBar4" class="MenuBarHorizontal">
+        <li><a href="?helpdesk">Download</a></li>
+      </ul>

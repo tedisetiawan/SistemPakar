@@ -1,0 +1,1 @@
+<img src="http://localhost/pakarbelimbing/jpgraph/pie.php">
