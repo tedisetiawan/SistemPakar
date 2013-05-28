@@ -145,7 +145,7 @@ include "../librari/inc.kodeauto.php";
     
     <tr bgcolor=""> 
       <td>&nbsp;</td>
-      <td><input type="submit" name="Submit" value="Simpan"></td>
+      <td><input type="submit" name="Submit" value="Simpan"> <a href="javascript:history.back()" class="btn btn-warning">Batal</a></td>
     </tr>
   </table>
 </form>

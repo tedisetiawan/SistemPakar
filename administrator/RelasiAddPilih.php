@@ -198,7 +198,7 @@ $kdsakit= "";
 	?>
     <tr bgcolor="">
       <td colspan="2" align="center" bordercolor="" bgcolor="">
-	  <input type="submit" name="Submit" value="Simpan" class="btn btn-info"></td>
+	  <input type="submit" name="Submit" value="Simpan" class="btn btn-info"> <a href="javascript:history.back()" class="btn btn-warning">Batal</a></td>
     </tr>
   </table>
 </form>

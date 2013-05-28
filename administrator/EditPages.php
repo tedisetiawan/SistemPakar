@@ -148,7 +148,7 @@ if($kdubah !=""){
     </tr>
     <tr bgcolor=""> 
       <td>&nbsp;</td>
-      <td><input type="submit" name="Submit" value="Simpan" class="btn btn-info"></td>
+      <td><input type="submit" name="Submit" value="Simpan" class="btn btn-info"> <a href="javascript:history.back()" class="btn btn-warning">Batal</a></td>
       <input type="hidden" name="tipe" value="edit">
       <input type="hidden" name="id_param" value="<?php echo $id_pages; ?>">
     </tr>

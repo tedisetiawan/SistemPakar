@@ -86,6 +86,14 @@ elseif ($page=="hasil") {
 		echo "FILE PROGRAM ANALISA HASIL TIDAK ADA";
 	}
 }
+elseif ($page=="hasillain") {
+	if(file_exists ("HasilDiagnosaLain.php")) {
+		include "HasilDiagnosaLain.php";
+	}
+	else {
+		echo "FILE PROGRAM ANALISA HASIL TIDAK ADA";
+	}
+}
 elseif ($page=="hasilsalah") {
 	if(file_exists ("HasilDiagnosaSalah.php")) {
 		include "HasilDiagnosaSalah.php";
@@ -169,6 +177,14 @@ elseif ($page=="detailartikel") {
 elseif ($page=="detaildiagnosa") {
 	if(file_exists ("DetailDiagnosa.php")) {
 		include "DetailDiagnosa.php";
+	}
+	else {
+		echo "FILE HALAMAN UTAMA KITA TIDAK ADA";
+	}
+}
+elseif ($page=="detaildiagnosalain") {
+	if(file_exists ("DetailDiagnosaLain.php")) {
+		include "DetailDiagnosaLain.php";
 	}
 	else {
 		echo "FILE HALAMAN UTAMA KITA TIDAK ADA";

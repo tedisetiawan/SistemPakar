@@ -147,7 +147,7 @@ if($kdubah !=""){
     </tr>
     <tr bgcolor="" valign="top"> 
       <td>&nbsp;</td>
-      <td><input type="submit" name="Submit" value="Simpan" class="btn btn-info"></td>
+      <td><input type="submit" name="Submit" value="Simpan" class="btn btn-info"> <a href="javascript:history.back()" class="btn btn-warning">Batal</a></td>
     </tr>
   </table>
 </form>

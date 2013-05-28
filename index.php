@@ -61,6 +61,14 @@
 						<li><a href="index.php?page=logout"><i class="icon-off"></i> LOG OUT</a></li>
 						<?php } ?>
 					</ul>
+					<?php
+						if(!empty($_SESSION['username_pengguna']))
+						{
+					?>
+			          <ul class="nav  pull-right">
+			            <li><a href="#"><i class="icon-user"></i> Welcome, <?php echo $_SESSION['username_pengguna']; ?></a></li>
+			          </ul>
+		          	<?php } ?>
 				</div>
 			</div>
 		</div>

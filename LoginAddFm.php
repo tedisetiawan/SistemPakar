@@ -1,3 +1,4 @@
+<script type="text/javascript" src="civem.js"></script>
 <?php
 if(!empty($_SESSION['username_admin']))
 {
@@ -11,12 +12,12 @@ else
   
     <label for="menu">Username</label>
     <div class="cleaner_h5"></div>
-    <input type="search" style="width:90%;" id="username" name="TxtUser" placeholder="Username" value="" required />
+    <input type="search" style="width:90%;" id="username" name="TxtUser" placeholder="Username" value="" required data-errormessage-value-missing="Kolom username masih kosong..."  />
     <div class="cleaner_h10"></div>
   
     <label for="menu">Password</label>
     <div class="cleaner_h5"></div>
-    <input type="password" style="width:90%;" id="password" name="TxtPasswd" placeholder="Password" value="" required />
+    <input type="password" style="width:90%;" id="password" name="TxtPasswd" placeholder="Password" value="" required data-errormessage-value-missing="Kolom password masih kosong..."  />
     <div class="cleaner_h10"></div>
   
     <label for="menu">-</label>

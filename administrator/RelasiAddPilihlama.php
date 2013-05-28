@@ -99,7 +99,7 @@ body {
     <tr bgcolor="#dbeaf5">
       <td colspan="2" align="center" bordercolor="#006600" bgcolor="#dbeaf5">
 	  <input type="submit" name="Submit" value="Simpan">
-	  <input type="reset" name="reset" value="Normalkan">
+	  <input type="reset" name="reset" value="Normalkan"> <a href="javascript:history.back()" class="btn btn-warning">Batal</a>
 	  </td>
     </tr>
   </table>

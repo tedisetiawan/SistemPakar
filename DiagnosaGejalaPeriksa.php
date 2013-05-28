@@ -55,12 +55,6 @@ on relasigejala.id_solusi=solusi.id_solusi where log.id_log='$id_log' group by i
 		mysql_query($sqltmp1);
 		$No++;
 	}
-	if ($No==0){
-
-		echo "<meta http-equiv='refresh' content='0; url=index.php?page=hasilsalah'>";
-		//echo "Gejala Ini tidak Sesuai Penyakit Yang Di Pilih";
-		exit;
-	}
 
 }
 if(mysql_num_rows(mysql_query("select * from relasi where id_gejala in (".$gj.") and id_penyakit='".$_SESSION['id_penyakit']."'"))>0)
@@ -79,6 +73,7 @@ if(mysql_num_rows(mysql_query("select * from relasi where id_gejala in (".$gj.")
 else
 {
 
-		echo "<meta http-equiv='refresh' content='0; url=index.php?page=hasilsalah'>";
+		AddAnalisaHasil($mk, $id_log);
+		echo "<meta http-equiv='refresh' content='0; url=index.php?page=hasil'>";
 }
 ?>

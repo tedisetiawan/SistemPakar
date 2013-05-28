@@ -130,7 +130,7 @@ else{
 } 
  
 //Sesuaikan perintah SQL 
-$tampil="select * from tmp_penyakit a left join hamapenyakit b on a.Id_Pnykt=b.Id_Pnykt left join (select x.id_log, y.id_pengguna, y.nama from analisahasil x left join pengguna y on x.id_pengguna=y.id_pengguna) c on a.id_log=c.id_log group by c.id_log limit $posisi,$batas"; 
+$tampil="select * from tmp_penyakit a left join hamapenyakit b on a.Id_Pnykt=b.Id_Pnykt left join (select x.id_log, y.id_pengguna, y.nama from log x left join pengguna y on x.id_pengguna=y.id_pengguna) c on a.id_log=c.id_log group by c.id_log limit $posisi,$batas"; 
 
 $hasil=mysql_query($tampil); 
 
@@ -153,7 +153,7 @@ echo "</table>";
 echo "<br>Halaman : "; 
 $file="index.php"; 
  
-$tampil2="select * from tmp_penyakit a left join hamapenyakit b on a.Id_Pnykt=b.Id_Pnykt left join (select x.id_log, y.id_pengguna, y.nama from analisahasil x left join pengguna y on x.id_pengguna=y.id_pengguna) c on a.id_log=c.id_log group by c.id_log "; 
+$tampil2="select * from tmp_penyakit a left join hamapenyakit b on a.Id_Pnykt=b.Id_Pnykt left join (select x.id_log, y.id_pengguna, y.nama from log x left join pengguna y on x.id_pengguna=y.id_pengguna) c on a.id_log=c.id_log group by c.id_log "; 
 $hasil2=mysql_query($tampil2); 
 $jmldata=mysql_num_rows($hasil2); 
 $jmlhalaman=ceil($jmldata/$batas); 

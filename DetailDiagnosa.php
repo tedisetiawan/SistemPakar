@@ -1,3 +1,11 @@
+<?php
+$cek = mysql_num_rows(mysql_query("select * from hasilanalisa where id_log='".$_GET['id_log']."'"));
+if($cek==0)
+{
+  echo "<meta http-equiv='refresh' content='0; url=index.php?page=detaildiagnosalain&id_log=".$_GET['id_log']."'>";
+}
+?>
+
     <script type="text/javascript" src="canvasjs.min.js"></script>
 
 <h4><span class='icon-dashboard'></span> Hasil Diagnosa - Belimbing Manis</h4>

@@ -40,7 +40,7 @@ $Test->Render("example10.png");
 
 
 require_once("dompdf/dompdf_config.inc.php");
-$h="http://localhost/pakarbelimbing/HasilDiagnosaCetak.php?id_log=".$_GET['id_log']."&id_pengguna=".$_GET['id_pengguna']."";
+$h="http://localhost/pakarbelimbing/HasilDiagnosaCetakLain.php?id_log=".$_GET['id_log']."&id_pengguna=".$_GET['id_pengguna']."";
 session_start();
 $_SESSION['get_id_log'] = $_GET['id_log'];
 $html=file_get_contents($h);
