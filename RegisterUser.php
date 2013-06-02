@@ -1,3 +1,10 @@
+<?php
+if(!empty($_SESSION['username_pengguna']))
+{
+    echo '<meta http-equiv="refresh" content="0;url=?page=datadiagnosa">';
+}
+else{
+?>
 <script type="text/javascript" src="civem.js"></script>
 <h4><span class='icon-share'></span> Register User - Belimbing Manis</h4>
 <form action="?page=savereguser" method="post" name="form1" target="_self">
@@ -41,3 +48,4 @@
     <div class="cleaner_h10"></div>
 
 </form>
+<?php } ?>

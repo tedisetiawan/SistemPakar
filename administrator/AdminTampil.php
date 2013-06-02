@@ -98,6 +98,10 @@ include "../librari/inc.koneksidb.php";
         <li>
           <a href="AdminTampil.php"><span class="icon-inbox"></span>Daftar Admin</a>
         </li>
+        
+        <li>
+          <a href="PenggunaTampil.php"><span class="icon-share"></span>Pengguna</a>
+        </li>
         <li>
           <a href="LaporanTampil.php"><span class="icon-share"></span>Laporan</a>
         </li>
@@ -139,9 +143,13 @@ include "../librari/inc.koneksidb.php";
     <td bgcolor="#FFFFFF"><div align="left"><?php echo $data['id_user']; ?></div></td>
     <td><div align="left"><?php echo $data['username']; ?></div></td>
     <td align="center"> 
-    <div><a href="AdminHapus.php?kdhapus=<? echo $data['id_user']; ?>" target="_self" class="btn">Delete</a> 
-      <a href="AdminEditFm.php?kdubah=<? echo $data['id_user']; ?>" target="_self"></a> 
-      | <a href="AdminEditFm.php?kdubah=<? echo $data['id_user']; ?>" target="_self" class="btn">Edit</a><a href="AdminHapus.php?kdhapus=<? echo $data['id_user']; ?>" target="_self"></a></div></td>
+    <?php
+      if($_SESSION['id_admin']==$data['id_user'])
+      {
+    ?>
+    <div><a href="AdminEditFm.php?kdubah=<? echo $data['id_user']; ?>" target="_self" class="btn">Edit</a></div>
+    <?php } ?>
+  </td>
   </tr>
   <?php
   }

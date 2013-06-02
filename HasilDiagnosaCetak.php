@@ -170,7 +170,7 @@ $qry_solusi4 = mysql_query($sql_solusi3, $koneksi);
     <p></p>
     <div class="alert alert-info">
         <?php
-      $penyakit = mysql_query("SELECT * FROM `relasi` a left join hamapenyakit b on a.id_penyakit=b.Id_Pnykt where id_gejala in (SELECT id_gejala FROM `tmp_gejala` where id_log='".$_GET['id_log']."' and id_gejala in(select id_gejala from analisahasil where id_log='".$_GET['id_log']."')) group by id_penyakit");
+      $penyakit = mysql_query("SELECT * FROM `relasi` a left join hamapenyakit b on a.id_penyakit=b.Id_Pnykt where id_gejala in (SELECT id_gejala FROM `tmp_gejala` where id_log='".$_GET['id_log']."') group by id_penyakit");
       
       echo "<ol>";
       while($pn=mysql_fetch_array($penyakit))

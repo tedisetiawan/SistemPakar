@@ -110,6 +110,10 @@ $kdsakit= "";
         <li>
           <a href="AdminTampil.php"><span class="icon-inbox"></span>Daftar Admin</a>
         </li>
+        
+        <li>
+          <a href="PenggunaTampil.php"><span class="icon-share"></span>Pengguna</a>
+        </li>
         <li>
           <a href="LaporanTampil.php"><span class="icon-share"></span>Laporan</a>
         </li>

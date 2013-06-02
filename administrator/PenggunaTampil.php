@@ -1,7 +1,8 @@
-<?php
-include "inc.session.php"; 
+<?php 
+include "inc.session.php";
 include "../librari/inc.koneksidb.php";
 ?>
+
 
 <!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
@@ -122,7 +123,40 @@ include "../librari/inc.koneksidb.php";
       <div class="box">
         <div class="well">
 
-          <h4>Selamat Datang Administrator...</h4>
+<table class='table table-striped table-condensed'>
+  <tr>
+    <td>No</td> 
+    <td>Nama</td> 
+    <td>Jenis Kelamin</td> 
+    <td>Usia</td> 
+    <td>Alamat</td> 
+  </tr>
+  <?php 
+  $sql = "SELECT * FROM pengguna ORDER BY id_pengguna";
+  $qry = mysql_query($sql, $koneksi) 
+     or die ("SQL Error".mysql_error());
+  $no=0;
+  while ($data=mysql_fetch_array($qry)) {
+  $no++;
+  ?>
+  <tr bgcolor="#FFFFFF">
+    <td><div align="left"><?php echo $no; ?></div></td> 
+    <td><div align="left"><?php echo $data['nama']; ?></div></td>
+    <td><div align="left"><?php echo $data['kelamin']; ?></div></td>
+    <td><div align="left"><?php echo $data['usia']; ?></div></td>
+    <td><div align="left"><?php echo $data['alamat']; ?></div></td>
+  </tr>
+  <?php
+  }
+  ?>
+  <tr>
+    <td height="104">&nbsp;</td> 
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center">&nbsp;</td>
+  </tr>
+</table>
+
         </div>
       </div>
     </section>
@@ -134,3 +168,4 @@ include "../librari/inc.koneksidb.php";
   </section>
 </body>
 </html>
+

@@ -123,9 +123,10 @@ $persentase=round($g/$h*100,2);
 		       		$sql_solusi1 = "select  * FROM relasi a left join gejala b on a.id_gejala=b.id_gejala where id_penyakit in (select Id_Pnykt from  tmp_penyakit where id_log='".$_SESSION['id_log']."')";
 
 					$qry_solusi1 = mysql_query($sql_solusi1, $koneksi);
+					$banyak = mysql_num_rows($qry_solusi1);
 					while ($hsl_solusi1=mysql_fetch_array($qry_solusi1)) {
 		       		?>
-		       		<?php echo '{  y: 100/3, legendText:"'.$hsl_solusi1['gejala'].'", indexLabel: "'.$hsl_solusi1['gejala'].'" },'; ?>
+		       		<?php echo '{  y: 100/'.$banyak.', legendText:"'.$hsl_solusi1['gejala'].'", indexLabel: "'.$hsl_solusi1['gejala'].'" },'; ?>
 		       		<?php } ?>
 				
 		       
@@ -209,7 +210,7 @@ $qry_solusi4 = mysql_query($sql_solusi3, $koneksi);
     <p></p>
     <div class="alert alert-info">
         <?php
-			$penyakit = mysql_query("SELECT * FROM `relasi` a left join hamapenyakit b on a.id_penyakit=b.Id_Pnykt where id_gejala in (SELECT id_gejala FROM `tmp_gejala` where id_log='".$_SESSION['id_log']."' and id_gejala in(select id_gejala from analisahasil where id_log='".$_SESSION['id_log']."')) group by id_penyakit");
+			$penyakit = mysql_query("SELECT * FROM `relasi` a left join hamapenyakit b on a.id_penyakit=b.Id_Pnykt where id_gejala in (SELECT id_gejala FROM `tmp_gejala` where id_log='".$_SESSION['id_log']."') group by id_penyakit");
 			
 			echo "<ol>";
 			while($pn=mysql_fetch_array($penyakit))
